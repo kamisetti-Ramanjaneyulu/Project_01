@@ -59,6 +59,7 @@ const Workshop = () => {
               <path d="M9 5l7 7-7 7" />
             </svg>
           </div>
+          <p>Get certified by be10x to highlight your AI tool capabilities in your resume</p>
         </div>
 
         {/* CTA Button */}
