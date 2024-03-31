@@ -18,7 +18,6 @@ import t2 from '../images/t2.png';
 import t3 from '../images/t3.png';
 import t4 from '../images/t4.png';
 import t5 from '../images/t5.png';
-
 import blogai from '../images/blogai.jpg';
 import blogyai from '../images/blogyai.jpeg';
 import whyai from '../images/why-ai.jpg';
@@ -120,7 +119,7 @@ const Home = () => {
 
   return (
     <div className='m-0'>
-<div className="w-full h-auto md:h-[80vh] flex flex-col md:flex-row bg-black text-white px-6 md:px-20">
+{/* <div className="w-full h-auto md:h-[80vh] flex flex-col md:flex-row bg-black text-white px-6 md:px-20">
   <div className='flex-1 flex flex-col justify-center'>
     <h1 className="text-4xl md:text-7xl font-bold mb-4">Become 10X More Productive with Our<span className='text-orange-500'> AI Workshop</span></h1>
     <ul className="text-lg md:text-xl">
@@ -132,7 +131,7 @@ const Home = () => {
     <p className="text-xl md:text-3xl text-center mb-8">Join AI Workshop today!</p>
     <Link to="/Workshop" className="border-2 border-orange-500 rounded-full text-white font-bold py-2 px-4 text-lg md:text-xl">Register now</Link>
   </div>
-</div>
+</div> */}
 
 
 <div className='m-0'>

@@ -29,6 +29,8 @@ function Navbar() {
                 <div className="hidden md:flex space-x-4">
                     <Link to="/about-us" className="text-black hover:text-gray-700">About us</Link>
                     <Link to="/contact-us" className="text-black hover:text-gray-700">Contact us</Link>
+                    <Link to="/login" className="text-black hover:text-gray-700">My Account</Link>
+
                 </div>
                 <button
                     onClick={toggleMenu}
@@ -68,6 +70,8 @@ function Navbar() {
                         <Link to="/blog" className="text-black hover:text-gray-700" onClick={closeMenu}>Blog</Link>
                         <Link to="/about-us" className="text-black hover:text-gray-700" onClick={closeMenu}>About Us</Link>
                         <Link to="/contact-us" className="text-black hover:text-gray-700" onClick={closeMenu}>Contact Us</Link>
+                        <Link to="/login" className="text-black hover:text-gray-700" onClick={closeMenu}>My Account</Link>
+
                     </nav>
                 </div>
             )}

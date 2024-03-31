@@ -13,6 +13,11 @@ import BlogWhyAi from './components/BlogWhyAi';
 import BlogAp from './components/BlogAp';
 import BlogGen from './components/BlogGen';
 import Workshop from './components/Workshop';
+import MyAccount from './components/MyAccount';
+import Courses from './components/Courses';
+import CoursesResume from './components/CoursesResume';
+import Login from './components/Login';
+
 
 function App() {
   return (
@@ -30,7 +35,12 @@ function App() {
           <Route path="/contact-us" element={<Contactus />} />
           <Route path="/programs" element={<Programs />} />
           <Route path="/download-brochure" element={<DownloadBrochure />} />
-          <Route path="/Workshop" element={<Workshop />} />
+          {/* <Route path="/Workshop" element={<Workshop />} /> */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/myaccount" element={<MyAccount />} />
+          <Route path="/Myaccount/Courses" element={<Courses />} />
+          <Route path="/Myaccount/CoursesResume" element={<CoursesResume />} />
+          
 
         </Routes>
         <Footer />
