@@ -29,7 +29,7 @@ function CoursesResume() {
           <div style={{ width: "98%" }} className="shadow-none flex flex-col text-center whitespace-pre rounded bg-blue-500"></div>
         </div>
       </div>
-      <Link to="/Myaccount/Course/start" className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md">
+      <Link to="/Myaccount/Course" className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md">
                 RESUME
       </Link>
     </div>

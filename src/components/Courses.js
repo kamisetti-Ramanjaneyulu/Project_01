@@ -6,7 +6,7 @@ import MyNav from './MyNav';
 const Courses = () => {
   const courseData = [
     {
-      title: 'Machine Learning ',
+      title: 'LearneverythingAI',
       marks: '48/50',
     },
     
@@ -28,10 +28,12 @@ const Courses = () => {
             {course.marks && (
               <p className="text-sm text-gray-600 py-4">Your Marks: {course.marks}</p>
             )}
-
+        <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-blue-200">
+          <div style={{ width: "98%" }} className="shadow-none flex flex-col text-center whitespace-pre rounded bg-blue-500"></div>
+        </div>
             {/* Resume button */}
             {course.marks && course.marks !== '' && (
-              <Link to="/Myaccount/CoursesResume" className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md">
+              <Link to="/Myaccount/Course" className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md">
                 RESUME
               </Link>
             )}

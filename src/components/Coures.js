@@ -5,9 +5,58 @@ import MyNav from './MyNav';
 const Course = () => {
   const [sections, setSections] = useState([
     {
-      title: 'Front-End Web Development',
+      title: 'Machine Learning      ',
       lectures: [
-        { title: 'What You\'ll Get in This Course', duration: '03:08', preview: true },
+        { title: 'EDA', duration: '03:08', preview: true },
+        // Add other lectures here
+      ],
+      isOpen: false,
+    },
+    {
+      title: 'Recommendation Systems      ',
+      lectures: [
+        { title: 'EDA', duration: '03:08', preview: true },
+        // Add other lectures here
+      ],
+      isOpen: false,
+    },
+    {
+      title: 'Time Series',
+      lectures: [
+        { title: 'EDA', duration: '03:08', preview: true },
+        // Add other lectures here
+      ],
+      isOpen: false,
+    },
+    {
+      title: 'Deep Learning      ',
+      lectures: [
+        { title: 'EDA', duration: '03:08', preview: true },
+        // Add other lectures here
+      ],
+      isOpen: false,
+    },
+    {
+      title: 'Computer Vision      ',
+      lectures: [
+        { title: 'EDA', duration: '03:08', preview: true },
+        // Add other lectures here
+      ],
+      isOpen: false,
+    },
+    {
+      title: 'Computer Vision      ',
+      lectures: [
+        { title: 'EDA', duration: '03:08', preview: true },
+        // Add other lectures here
+      ],
+      isOpen: false,
+    },
+
+    {
+      title: 'Natural Language Processing      ',
+      lectures: [
+        { title: 'EDA', duration: '03:08', preview: true },
         // Add other lectures here
       ],
       isOpen: false,
@@ -30,10 +79,10 @@ const Course = () => {
     <div className="container mx-auto p-4 md:p-8">
       <div className="max-w-md md:max-w-2xl rounded overflow-hidden shadow-lg bg-white">
         <div className="p-6 md:p-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">The Complete 2024 Web Development Bootcamp</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">LearneverythingAI</h2>
           <p className="text-gray-700 text-base md:text-lg mb-6">
-            Become a Full-Stack Web Developer with just ONE course. HTML, CSS, Javascript, Node, React, PostgreSQL, Web3 and DApps
-          </p>
+          Machine Learning is the field of study that gives computers the capability to learn without being explicitly programmed. ML is one of the most exciting technologies that one would have ever come across
+           </p>
           <div className="flex items-center">
             <span className="bg-green-200 text-green-800 text-xs md:text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">Bestseller</span>
             <div className="text-yellow-400 text-sm md:text-base mr-1">
@@ -55,7 +104,7 @@ const Course = () => {
       <div className="bg-white mt-6 md:mt-10 p-4 md:p-8 shadow-lg rounded-lg">
         <h2 className="text-3xl md:text-4xl font-bold mb-6">Course Content</h2>
         <div className="flex justify-between items-center mb-6">
-          <p className="text-gray-700 text-base md:text-lg">4 Sections • 373 lectures • 61h 44m total length</p>
+          <p className="text-gray-700 text-base md:text-lg">4 Sections • 3 lectures • 1h 44m total length</p>
           <button className="text-blue-600 hover:text-blue-800 text-base md:text-lg">Expand all sections</button>
         </div>
         {sections.map((section, index) => (
@@ -81,7 +130,7 @@ const Course = () => {
               <div className="mt-4 pl-4 border-l-2 border-gray-200">
                 {section.lectures.map((lecture, lectureIndex) => (
                   <div key={lectureIndex} className="flex justify-between items-center py-2">
-                    <span className="text-gray-700 text-base md:text-lg">{lecture.title}</span>
+                    <Link to="/Myaccount/Course/start" className="text-blue-700 text-base md:text-lg ">{lecture.title}</Link>
                     <span className="text-gray-500 text-xs md:text-sm">{lecture.duration}</span>
                     {lecture.preview && (
                       <button className="text-blue-600 hover:text-blue-800 text-xs md:text-sm">Preview</button>
