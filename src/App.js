@@ -17,6 +17,8 @@ import MyAccount from './components/MyAccount';
 import Courses from './components/Courses';
 import CoursesResume from './components/CoursesResume';
 import Login from './components/Login';
+import Course from './components/Coures';
+import CoureseStart from './components/CoureseStart';
 
 
 function App() {
@@ -39,6 +41,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/myaccount" element={<MyAccount />} />
           <Route path="/Myaccount/Courses" element={<Courses />} />
+          <Route path="/Myaccount/Course" element={<Course />} />
+          <Route path="/Myaccount/Course/start" element={<CoureseStart />} />
+
           <Route path="/Myaccount/CoursesResume" element={<CoursesResume />} />
           
 

@@ -7,7 +7,16 @@ const MyNav = () => {
     <div className="bg-white p-4 flex justify-between items-center shadow-lg">
       <div className="flex items-center space-x-4">
         <select className="border p-2 rounded">
-          <option>Gen-AI-Program</option>
+          <option>Machine Learning</option>
+          <option>Recommendation Systems</option>
+          <option>Time Series</option>
+          <option>Deep Learning</option>
+          <option>Computer Vision</option>
+          <option>Natural Language Processing</option>
+          <option>GANs</option>
+          <option>Reinforement Learning</option>
+          <option>Generative AI</option>
+          <option>Prompt Engineering</option>
         </select>
         <Link to="/Myaccount" >Dashboard</Link>
         <Link to="Courses">Courses</Link>

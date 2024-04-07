@@ -28,18 +28,16 @@ const MyAccount = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
                   {
-                    title: 'Multimodal Generative AI ...',
-                    subtitle: 'GAIP LVC 7. Generative AI for Image Creation.pdf'
+                    title: 'Machine Learning',
+                    subtitle: 'EDA, Supervised Learing, Unsupervised Learing, Life Cycle'
                   },
                   {
-                    title: 'Program Overview',
-                    subtitle: 'Gen AI Program - Feb’24 - 4.pdf'
+                    title: 'Natural Language Processing',
+                    subtitle: 'Text Pre-Processing, Text Classification, Sequential NLP'
                   }
-                  // Add more courses as needed
                 ].map((course, index) => (
                   <div key={index} className="border rounded p-4 flex items-center">
                     <div className="flex-grow">
-                      {/* Replaced placeholder with file icon SVG */}
                       <svg className="inline-block mr-2 h-6 w-6 text-purple-500" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
                         <path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"></path>
                         <polyline points="13 2 13 9 20 9"></polyline>
@@ -47,8 +45,6 @@ const MyAccount = () => {
                       <h2 className='inline-block font-bold'>{course.title}</h2>
                       <p className='block text-sm'>{course.subtitle}</p>
                     </div>
-
-                    {/* Added arrow icon */}
                     {index === 0 && (
                       <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' className='-mr-2 h-5 w-5'>
                         <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M14 5l7 7m0 0l-7 7m7-14H3'></path>
@@ -58,8 +54,6 @@ const MyAccount = () => {
                 ))}
               </div>
             </div>
-
-            {/* Activities Section */}
             <div className="mt-6 p-4 bg-white rounded shadow">
               <h3 className="text-lg font-semibold mb-2">Activities</h3>
               <div className="flex space-x-4">
@@ -82,7 +76,6 @@ const MyAccount = () => {
                   Completed
                 </button>
               </div>
-              {/* Content based on selected tab */}
               {activeTab === 'upcoming' && (
                 <>
                   <div className="p-4 bg-white shadow-lg max-w-md mx-auto rounded-md">
@@ -168,44 +161,7 @@ const MyAccount = () => {
                 VIEW GRADEBOOK
               </button>
             </div>
-            <div className="p-4 space-y-4">
-              {/* Card 1 */}
-              <div className="flex items-center p-4 bg-white shadow rounded-lg">
-                <div className="p-2 rounded-full bg-blue-500 text-white text-2xl">
-                  📅
-                </div>
-                <div className="ml-4 flex-grow">
-                  <h3 className="text-lg font-semibold">Attendance</h3>
-                  <p className="text-green-500">100%</p>
-                  <p>Top Learners have 90%+ attendance</p>
-                </div>
-                <button className="px-4 py-2 bg-blue-500 text-white rounded-lg">
-                  VIEW DETAILS
-                </button>
-              </div>
-
-              {/* Card 2 */}
-              <div className="flex items-center p-4 bg-white shadow rounded-lg">
-                <div className="p-2 rounded-full bg-yellow-400 text-white text-2xl">
-                  😊
-                </div>
-                <div className="ml-4 flex-grow">
-                  <h3 className="text-lg font-semibold">Need assistance?</h3>
-                  <p>We're here to help. Click here to reach out to us.</p>
-                </div>
-              </div>
-
-              {/* Card 3 */}
-              <div className="flex items-center p-4 bg-white shadow rounded-lg">
-                <div className="p-2 rounded-full bg-green-500 text-white text-2xl">
-                  📚
-                </div>
-                <div className="ml-4 flex-grow">
-                  <h3 className="text-lg font-semibold">Industry articles</h3>
-                  <p>Curated articles on latest industry developments and trends</p>
-                </div>
-              </div>
-            </div>
+          
           </div>
         </div>
       </div>

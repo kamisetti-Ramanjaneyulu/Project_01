@@ -1,6 +1,8 @@
 import React from 'react'
 import { FaFileAlt } from 'react-icons/fa'; 
 import MyNav from './MyNav';
+import { Link } from 'react-router-dom';
+
 function CoursesResume() {
   return (
     <div>
@@ -10,7 +12,7 @@ function CoursesResume() {
         <div className="flex items-center">
           <FaFileAlt className="w-16 h-16 mr-4 text-purple-500" /> {/* Using React Icons */}
           <div>
-            <h2 className="text-xl font-bold">Multimodal Generative AI Applications</h2>
+            <h2 className="text-xl font-bold">Machine Learning</h2>
             <p className="text-sm text-gray-500">In Progress</p>
           </div>
         </div>
@@ -27,9 +29,9 @@ function CoursesResume() {
           <div style={{ width: "98%" }} className="shadow-none flex flex-col text-center whitespace-pre rounded bg-blue-500"></div>
         </div>
       </div>
-      <button type="button" className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 border border-blue-500 rounded shadow">
-        RESUME
-      </button>
+      <Link to="/Myaccount/Course/start" className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md">
+                RESUME
+      </Link>
     </div>
     </div>
   )

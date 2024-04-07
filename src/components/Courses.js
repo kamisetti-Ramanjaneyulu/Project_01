@@ -6,21 +6,10 @@ import MyNav from './MyNav';
 const Courses = () => {
   const courseData = [
     {
-      title: 'Multimodal Generative AI Applications',
+      title: 'Machine Learning ',
       marks: '48/50',
     },
-    {
-      title: 'Generative AI Business Applications',
-      marks: '18.5/20',
-    },
-    {
-      title: 'Program Overview',
-      marks: '',
-    },
-    {
-      title: 'Career Enhancement',
-      marks: '',
-    },
+    
   ];
 
   return (
@@ -42,7 +31,7 @@ const Courses = () => {
 
             {/* Resume button */}
             {course.marks && course.marks !== '' && (
-              <Link to="/CoursesResume" className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md">
+              <Link to="/Myaccount/CoursesResume" className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md">
                 RESUME
               </Link>
             )}
