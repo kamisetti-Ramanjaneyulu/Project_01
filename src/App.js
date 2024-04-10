@@ -19,13 +19,9 @@ import CoursesResume from './components/CoursesResume';
 import Login from './components/Login';
 import Course from './components/Coures';
 import CoureseStart from './components/CoureseStart';
-<<<<<<< HEAD
 import CoursePage from './components/CoursePage';
 import CourseOverview from './components/CourseOverview';
-import Test from './components/test';
-=======
->>>>>>> 064327520cc3b494574d70ea3672408d65abb0e0
-
+import Test from './components/test'; // Make sure to import this component if it's needed
 
 function App() {
   return (
@@ -34,10 +30,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-<<<<<<< HEAD
-          <Route path="/t" element={<Test />} />
-=======
->>>>>>> 064327520cc3b494574d70ea3672408d65abb0e0
+          {/* <Route path="/t" element={<Test />} /> */} {/* Uncomment if needed */}
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/ai" element={<BlogAi />} />
           <Route path="/blog/whyai" element={<BlogWhyAi />} />
@@ -53,16 +46,9 @@ function App() {
           <Route path="/Myaccount/Courses" element={<Courses />} />
           <Route path="/Myaccount/Course" element={<Course />} />
           <Route path="/Myaccount/Course/start" element={<CoureseStart />} />
-<<<<<<< HEAD
           <Route path="/Myaccount/Coursepage" element={<CoursePage />} />
           <Route path="/Myaccount/CoursesResume" element={<CoursesResume />} />
           <Route path="/Myaccount/CourseOverview" element={<CourseOverview />} />
-=======
-
-          <Route path="/Myaccount/CoursesResume" element={<CoursesResume />} />
->>>>>>> 064327520cc3b494574d70ea3672408d65abb0e0
-          
-
         </Routes>
         <Footer />
       </div>
