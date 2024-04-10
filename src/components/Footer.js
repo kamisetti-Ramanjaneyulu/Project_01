@@ -60,7 +60,7 @@ const Footer = () => {
       </div>
 
       <div className="text-center mt-4 md:mt-0 text-gray-600">
-        &copy; {year} Guravas AI. All Rights Reserved.
+        &copy; {year} AIgiant. All Rights Reserved.
       </div>
     </footer>
   );
