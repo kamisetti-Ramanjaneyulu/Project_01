@@ -11,7 +11,11 @@ const MyNav = () => {
          
         </select>
         <Link to="/Myaccount" >Dashboard</Link>
+<<<<<<< HEAD
         <Link to="/Myaccount/Coursepage">Courses</Link>
+=======
+        <Link to="Courses">Courses</Link>
+>>>>>>> 064327520cc3b494574d70ea3672408d65abb0e0
       </div>
 
     </div>
