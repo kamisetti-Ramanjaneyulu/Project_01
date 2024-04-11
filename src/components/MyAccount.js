@@ -3,6 +3,7 @@ import 'tailwindcss/tailwind.css';
 import MyNav from './MyNav';
 import { FaChalkboardTeacher, FaBolt } from 'react-icons/fa';
 import { FaLightningBolt, FaGraduationCap } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const MyAccount = () => {
   const [activeTab, setActiveTab] = useState('upcoming');
@@ -17,7 +18,7 @@ const MyAccount = () => {
       <div className="p-4 md:p-8 bg-gray-100 min-h-screen">
         <div className="mb-4">
           <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">Welcome back Gaurav Reddy, Continue learning</h1>
-          <button className="bg-blue-500 text-white px-4 py-2 rounded">SEE ALL</button>
+          {/* <button className="bg-blue-500 text-white px-4 py-2 rounded">SEE ALL</button> */}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -36,7 +37,7 @@ const MyAccount = () => {
                     subtitle: 'Text Pre-Processing, Text Classification, Sequential NLP'
                   }
                 ].map((course, index) => (
-                  <div key={index} className="border rounded p-4 flex items-center">
+                  <Link to="/Myaccount/CourseOverview" key={index} className="border rounded p-4 flex items-center">
                     <div className="flex-grow">
                       <svg className="inline-block mr-2 h-6 w-6 text-purple-500" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
                         <path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"></path>
@@ -50,7 +51,7 @@ const MyAccount = () => {
                         <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M14 5l7 7m0 0l-7 7m7-14H3'></path>
                       </svg>
                     )}
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -138,7 +139,7 @@ const MyAccount = () => {
           {/* Right Section */}
           <div>
             {/* Progress Information */}
-            <div className="p-4 bg-white rounded-lg shadow-lg max-w-sm m-4">
+            {/* <div className="p-4 bg-white rounded-lg shadow-lg max-w-sm m-4">
               <div className="flex justify-between mb-4">
                 <div>
                   <p className="text-gray-700 text-sm">In Progress</p>
@@ -160,7 +161,7 @@ const MyAccount = () => {
               >
                 VIEW GRADEBOOK
               </button>
-            </div>
+            </div> */}
           
           </div>
         </div>

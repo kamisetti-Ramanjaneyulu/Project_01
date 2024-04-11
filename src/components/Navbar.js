@@ -23,7 +23,7 @@ function Navbar() {
                 </div>
 
                 <Link to="/" className="text-black font-bold">
-                    AIgiant
+                AIgaint
                 </Link>
 
                 <div className="hidden md:flex space-x-4">

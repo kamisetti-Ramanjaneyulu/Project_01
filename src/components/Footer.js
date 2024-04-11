@@ -15,7 +15,7 @@ const Footer = () => {
   return (
     <footer className="bg-gray-100 p-4 md:p-8 flex flex-col md:flex-row justify-between items-center">
       <div className="flex flex-col mb-4 md:mb-0">
-        <span className="text-purple-600 font-bold">AIgiant</span>
+        <span className="text-purple-600 font-bold">AIgaint</span>
         <span>Revolutionizing AI Learning</span>
       </div>
 
@@ -60,7 +60,7 @@ const Footer = () => {
       </div>
 
       <div className="text-center mt-4 md:mt-0 text-gray-600">
-        &copy; {year} AIgiant. All Rights Reserved.
+        &copy; {year} AIgaint. All Rights Reserved.
       </div>
     </footer>
   );
