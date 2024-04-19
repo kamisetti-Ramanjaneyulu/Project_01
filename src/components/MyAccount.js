@@ -1,12 +1,51 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import MyNav from './MyNav';
 import { FaChalkboardTeacher, FaBolt } from 'react-icons/fa';
-import { FaLightningBolt, FaGraduationCap } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
+import { initializeApp } from 'firebase/app';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA6hi5WniSmIBsPCwcqk_QVizh8yHcYM88",
+  authDomain: "ravuru-ccbcd.firebaseapp.com",
+  projectId: "ravuru-ccbcd",
+  storageBucket: "ravuru-ccbcd.appspot.com",
+  messagingSenderId: "438776822141",
+  appId: "1:438776822141:web:31b8db8d2b789959003414",
+  measurementId: "G-9TDRW616T8"
+};
+
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 const MyAccount = () => {
   const [activeTab, setActiveTab] = useState('upcoming');
+  const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'courses'));
+        const coursesData = [];
+        querySnapshot.forEach(doc => {
+          coursesData.push({ id: doc.id, ...doc.data() });
+        });
+        setCourses(coursesData);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching courses:', error);
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [db]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -17,8 +56,7 @@ const MyAccount = () => {
       <MyNav />
       <div className="p-4 md:p-8 bg-gray-100 min-h-screen">
         <div className="mb-4">
-          <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">Welcome back Gaurav Reddy, Continue learning</h1>
-          {/* <button className="bg-blue-500 text-white px-4 py-2 rounded">SEE ALL</button> */}
+          {/* <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">Welcome back Gaurav Reddy, Continue learning</h1> */}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -27,23 +65,18 @@ const MyAccount = () => {
             {/* Course Information */}
             <div className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {[
-                  {
-                    title: 'Machine Learning',
-                    subtitle: 'EDA, Supervised Learing, Unsupervised Learing, Life Cycle'
-                  },
-                  {
-                    title: 'Natural Language Processing',
-                    subtitle: 'Text Pre-Processing, Text Classification, Sequential NLP'
-                  }
-                ].map((course, index) => (
-                  <Link to="/Myaccount/CourseOverview" key={index} className="border rounded p-4 flex items-center">
+                {courses.map((course, index) => (
+                  <Link
+                  to={{
+                    pathname: `/Myaccount/CourseOverview/${course.id}`,
+                    state: { courseId: course.id } // Pass the course ID as state
+                  }} key={index} className="border rounded p-4 flex items-center">
                     <div className="flex-grow">
                       <svg className="inline-block mr-2 h-6 w-6 text-purple-500" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
                         <path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"></path>
                         <polyline points="13 2 13 9 20 9"></polyline>
                       </svg>
-                      <h2 className='inline-block font-bold'>{course.title}</h2>
+                      <h2 className='inline-block font-bold'>{course.courseName}</h2>
                       <p className='block text-sm'>{course.subtitle}</p>
                     </div>
                     {index === 0 && (
@@ -55,7 +88,7 @@ const MyAccount = () => {
                 ))}
               </div>
             </div>
-            <div className="mt-6 p-4 bg-white rounded shadow">
+            {/* <div className="mt-6 p-4 bg-white rounded shadow">
               <h3 className="text-lg font-semibold mb-2">Activities</h3>
               <div className="flex space-x-4">
                 <button
@@ -107,7 +140,7 @@ const MyAccount = () => {
                 <div className="p-4 border rounded-lg">
                   <div className="flex items-center">
                     <div className="bg-pink-500 text-white p-2 rounded-full">
-                      <FaBolt /> {/* React Icons usage */}
+                      <FaBolt /> 
                     </div>
                     <div className="ml-4">
                       <h3 className="font-bold">Multimodal Generative AI Applications</h3>
@@ -117,10 +150,8 @@ const MyAccount = () => {
                   </div>
                   <p className="mt-2 text-gray-500">Time remaining: 6d 17h</p>
                 </div>
-
               )}
               {activeTab === 'completed' && (
-
                 <div className="p-4 border-b border-gray-200 flex justify-between items-center">
                   <div className="flex items-center">
                     <div className="p-2 bg-purple-100 rounded-full mr-4">
@@ -133,37 +164,9 @@ const MyAccount = () => {
                   </div>
                 </div>
               )}
-            </div>
-          </div>
-
-          {/* Right Section */}
-          <div>
-            {/* Progress Information */}
-            {/* <div className="p-4 bg-white rounded-lg shadow-lg max-w-sm m-4">
-              <div className="flex justify-between mb-4">
-                <div>
-                  <p className="text-gray-700 text-sm">In Progress</p>
-                  <p className="text-lg font-bold">2</p>
-                </div>
-                <div>
-                  <p className="text-gray-700 text-sm">Completed</p>
-                  <p className="text-lg font-bold">0</p>
-                </div>
-                <div>
-                  <p className="text-gray-700 text-sm">Incomplete</p>
-                  <p className="text-lg font-bold">0</p>
-                </div>
-              </div>
-
-              <button
-                type="button"
-                className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 border border-blue-500 rounded shadow"
-              >
-                VIEW GRADEBOOK
-              </button>
             </div> */}
-          
           </div>
+          
         </div>
       </div>
     </>

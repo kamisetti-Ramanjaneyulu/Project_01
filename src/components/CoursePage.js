@@ -1,69 +1,70 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
+import { initializeApp } from 'firebase/app';
+import MyNav from './MyNav';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA6hi5WniSmIBsPCwcqk_QVizh8yHcYM88",
+  authDomain: "ravuru-ccbcd.firebaseapp.com",
+  projectId: "ravuru-ccbcd",
+  storageBucket: "ravuru-ccbcd.appspot.com",
+  messagingSenderId: "438776822141",
+  appId: "1:438776822141:web:31b8db8d2b789959003414",
+  measurementId: "G-9TDRW616T8"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 const CoursePage = () => {
-  const courseCategories = [
-    {
-      title: 'Machine Learning',
-      courses: ['EDA', 'Supervised Learning', 'Unsupervised Learning', 'Life Cycle']
-    },
-    {
-      title: 'Recommendation Systems',
-      courses: ['Pre-work', 'Neural Networks & Deep Learning']
-    },
-    {
-      title: 'Time Series',
-      courses: ['Visualization', 'GANs', 'Reinforcement Learning', 'Advanced Computer Vision']
-    },
-    {
-      title: 'Deep Learning',
-      courses: ['Visualization', 'GANs', 'Reinforcement Learning', 'Advanced Computer Vision']
-    },
-    {
-      title: 'Computer Vision',
-      courses: ['Visualization', 'GANs', 'Reinforcement Learning', 'Advanced Computer Vision']
-    },
-    {
-      title: 'Natural Language Processing',
-      courses: ['Text Pre-Processing', 'Text Classification', 'Sequential NLP']
-    },
-  ];
-
-  const [images, setImages] = useState([]);
+  const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    Promise.all(courseCategories.map((_, index) => 
-      fetch('https://source.unsplash.com/random/400x300?sig=' + index)
-        .then((response) => response.url)
-    ))
-    .then((urls) => {
-      setImages(urls);
-      setLoading(false);
-    });
-  }, [courseCategories]);
+    const fetchData = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'courses'));
+        const coursesData = [];
+        querySnapshot.forEach(doc => {
+          coursesData.push({ id: doc.id, ...doc.data() });
+        });
+        setCourses(coursesData);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching courses:', error);
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
   return (
+    <>
+    <MyNav />
     <div className="p-4">
-      {courseCategories.map((category, index) => (
-        <Link to="/Myaccount/CourseOverview" key={index} className="mb-6">
-          <h2 className="text-lg font-bold mb-4">{category.title.trim()}</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {category.courses.map((course, i) => (
-              <div key={i} className="p-4 border rounded shadow">
-                <img src={images[index]} alt={course} className="w-full h-24 sm:h-32 object-cover mb-2 rounded" />
-                <p className="text-sm sm:text-base">{course}</p>
-              </div>
-            ))}
-          </div>
-        </Link>
-      ))}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {courses.map((course) => (
+          <Link
+            to={{
+              pathname: `/Myaccount/CourseOverview/${course.id}`,
+              state: { courseId: course.id } // Pass the course ID as state
+            }}
+            key={course.id}
+            className="p-4 border rounded shadow"
+          >
+            <img src={course.courseThumbnailURL} alt={course.courseName} className="w-full h-24 sm:h-32 object-cover mb-2 rounded" />
+            <p className="text-sm sm:text-base">{course.courseName}</p>
+          </Link>
+        ))}
+      </div>
     </div>
+    </>
   );
-};
+}
 
 export default CoursePage;

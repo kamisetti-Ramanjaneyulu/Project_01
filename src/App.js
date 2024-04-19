@@ -1,3 +1,5 @@
+// App.js
+import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Aboutus from './components/Aboutus';
@@ -12,16 +14,12 @@ import BlogAi from './components/BlogAi';
 import BlogWhyAi from './components/BlogWhyAi';
 import BlogAp from './components/BlogAp';
 import BlogGen from './components/BlogGen';
-import Workshop from './components/Workshop';
 import MyAccount from './components/MyAccount';
-import Courses from './components/Courses';
-import CoursesResume from './components/CoursesResume';
 import Login from './components/Login';
-import Course from './components/Coures';
 import CoureseStart from './components/CoureseStart';
 import CoursePage from './components/CoursePage';
 import CourseOverview from './components/CourseOverview';
-import Test from './components/test'; // Make sure to import this component if it's needed
+
 
 function App() {
   return (
@@ -30,7 +28,6 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/t" element={<Test />} /> */} {/* Uncomment if needed */}
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/ai" element={<BlogAi />} />
           <Route path="/blog/whyai" element={<BlogWhyAi />} />
@@ -40,15 +37,11 @@ function App() {
           <Route path="/contact-us" element={<Contactus />} />
           <Route path="/programs" element={<Programs />} />
           <Route path="/download-brochure" element={<DownloadBrochure />} />
-          {/* <Route path="/Workshop" element={<Workshop />} /> */}
           <Route path="/login" element={<Login />} />
           <Route path="/myaccount" element={<MyAccount />} />
-          <Route path="/Myaccount/Courses" element={<Courses />} />
-          <Route path="/Myaccount/Course" element={<Course />} />
-          <Route path="/Myaccount/Course/start" element={<CoureseStart />} />
+          <Route path="/Myaccount/Course/start/:videoUrl" element={<CoureseStart />} />
           <Route path="/Myaccount/Coursepage" element={<CoursePage />} />
-          <Route path="/Myaccount/CoursesResume" element={<CoursesResume />} />
-          <Route path="/Myaccount/CourseOverview" element={<CourseOverview />} />
+          <Route path="/Myaccount/CourseOverview/:id" element={<CourseOverview />} />
         </Routes>
         <Footer />
       </div>
@@ -57,3 +50,4 @@ function App() {
 }
 
 export default App;
+
