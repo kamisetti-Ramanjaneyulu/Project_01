@@ -1,27 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import MyNav from './MyNav';
-import { FaChalkboardTeacher, FaBolt } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom'; // Import the Navigate component
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
+import { auth } from '../Firebase'; // Import your Firebase auth object
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA6hi5WniSmIBsPCwcqk_QVizh8yHcYM88",
-  authDomain: "ravuru-ccbcd.firebaseapp.com",
-  projectId: "ravuru-ccbcd",
-  storageBucket: "ravuru-ccbcd.appspot.com",
-  messagingSenderId: "438776822141",
-  appId: "1:438776822141:web:31b8db8d2b789959003414",
-  measurementId: "G-9TDRW616T8"
+  apiKey: "AIzaSyA4qjcP40hgzx-gWKqVB6c9h9OKpecZobw",
+  authDomain: "lms-1-36b1f.firebaseapp.com",
+  projectId: "lms-1-36b1f",
+  storageBucket: "lms-1-36b1f.appspot.com",
+  messagingSenderId: "568729903010",
+  appId: "1:568729903010:web:5e85a998503b1054f9dcfb",
+  measurementId: "G-Z5844EFCH1"
 };
-
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const MyAccount = () => {
-  const [activeTab, setActiveTab] = useState('upcoming');
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -47,9 +45,11 @@ const MyAccount = () => {
     return <div>Loading...</div>;
   }
 
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
-  };
+  // Check if user is logged in
+  if (!auth.currentUser) {
+    // User is not logged in, redirect to login
+    return <Navigate to="/login" />;
+  }
 
   return (
     <>
@@ -67,10 +67,10 @@ const MyAccount = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {courses.map((course, index) => (
                   <Link
-                  to={{
-                    pathname: `/Myaccount/CourseOverview/${course.id}`,
-                    state: { courseId: course.id } // Pass the course ID as state
-                  }} key={index} className="border rounded p-4 flex items-center">
+                    to={{
+                      pathname: `/Myaccount/CourseOverview/${course.id}`,
+                      state: { courseId: course.id } // Pass the course ID as state
+                    }} key={index} className="border rounded p-4 flex items-center">
                     <div className="flex-grow">
                       <svg className="inline-block mr-2 h-6 w-6 text-purple-500" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
                         <path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"></path>
@@ -88,83 +88,6 @@ const MyAccount = () => {
                 ))}
               </div>
             </div>
-            {/* <div className="mt-6 p-4 bg-white rounded shadow">
-              <h3 className="text-lg font-semibold mb-2">Activities</h3>
-              <div className="flex space-x-4">
-                <button
-                  className={`p-2 rounded ${activeTab === 'upcoming' ? 'bg-blue-200' : 'bg-gray-200'}`}
-                  onClick={() => handleTabChange('upcoming')}
-                >
-                  Upcoming
-                </button>
-                <button
-                  className={`p-2 rounded ${activeTab === 'ongoing' ? 'bg-blue-200' : 'bg-gray-200'}`}
-                  onClick={() => handleTabChange('ongoing')}
-                >
-                  Ongoing
-                </button>
-                <button
-                  className={`p-2 rounded ${activeTab === 'completed' ? 'bg-blue-200' : 'bg-gray-200'}`}
-                  onClick={() => handleTabChange('completed')}
-                >
-                  Completed
-                </button>
-              </div>
-              {activeTab === 'upcoming' && (
-                <>
-                  <div className="p-4 bg-white shadow-lg max-w-md mx-auto rounded-md">
-                    <div className="flex items-center text-purple-600 mb-2">
-                      <FaChalkboardTeacher className="mr-2" />
-                      <h2 className="font-semibold">Mentored Learning Session</h2>
-                    </div>
-                    <p className="text-gray-700">
-                      LVC 7 : Generative AI for Image Creation by Rahul Aggarwal (1465)
-                    </p>
-                    <p className="text-sm text-gray-500">
-                      Course: Multimodal Generative AI Applications
-                    </p>
-                    <p className="text-sm text-gray-500">
-                      Starts At: Mar 21, 7:00 AM (2h)
-                    </p>
-
-                    <button
-                      type="button"
-                      className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-                    >
-                      Join Session
-                    </button>
-                  </div>
-                </>
-              )}
-              {activeTab === 'ongoing' && (
-                <div className="p-4 border rounded-lg">
-                  <div className="flex items-center">
-                    <div className="bg-pink-500 text-white p-2 rounded-full">
-                      <FaBolt /> 
-                    </div>
-                    <div className="ml-4">
-                      <h3 className="font-bold">Multimodal Generative AI Applications</h3>
-                      <p>Graded Quiz: Generative AI for Image Creation</p>
-                      <p>From: Mar 14, 8:00 PM - Due: Mar 25, 11:55 AM</p>
-                    </div>
-                  </div>
-                  <p className="mt-2 text-gray-500">Time remaining: 6d 17h</p>
-                </div>
-              )}
-              {activeTab === 'completed' && (
-                <div className="p-4 border-b border-gray-200 flex justify-between items-center">
-                  <div className="flex items-center">
-                    <div className="p-2 bg-purple-100 rounded-full mr-4">
-                      <span role="img" aria-label="Quiz Icon">⚡</span>
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-bold">Graded Quiz: Generative AI for Speech Recognition</h4>
-                      <p className="text-gray-600">From: Mar 07, 8:00 PM - Due: Mar 18, 11:55 AM</p>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div> */}
           </div>
           
         </div>

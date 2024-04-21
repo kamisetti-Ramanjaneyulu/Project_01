@@ -19,6 +19,7 @@ import Login from './components/Login';
 import CoureseStart from './components/CoureseStart';
 import CoursePage from './components/CoursePage';
 import CourseOverview from './components/CourseOverview';
+import ProfilePage from './components/ProfilePage';
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
           <Route path="/Myaccount/Course/start/:videoUrl" element={<CoureseStart />} />
           <Route path="/Myaccount/Coursepage" element={<CoursePage />} />
           <Route path="/Myaccount/CourseOverview/:id" element={<CourseOverview />} />
+          <Route path="/Myaccount/Notes" element={<ProfilePage />} />
         </Routes>
         <Footer />
       </div>

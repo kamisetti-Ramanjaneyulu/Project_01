@@ -40,7 +40,7 @@ const Login = () => {
           </button>
         </div>
       </div>
-      <ToastContainer /> {/* Toast container for displaying messages */}
+      <ToastContainer /> 
     </section>
   );
 };

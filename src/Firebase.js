@@ -2,19 +2,23 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from 'firebase/firestore';
+import { getStorage } from "firebase/storage";
+
 const firebaseConfig = {
-  apiKey: "AIzaSyA6hi5WniSmIBsPCwcqk_QVizh8yHcYM88",
-  authDomain: "ravuru-ccbcd.firebaseapp.com",
-  projectId: "ravuru-ccbcd",
-  storageBucket: "ravuru-ccbcd.appspot.com",
-  messagingSenderId: "438776822141",
-  appId: "1:438776822141:web:31b8db8d2b789959003414",
-  measurementId: "G-9TDRW616T8"
+  apiKey: "AIzaSyA4qjcP40hgzx-gWKqVB6c9h9OKpecZobw",
+  authDomain: "lms-1-36b1f.firebaseapp.com",
+  projectId: "lms-1-36b1f",
+  storageBucket: "lms-1-36b1f.appspot.com",
+  messagingSenderId: "568729903010",
+  appId: "1:568729903010:web:5e85a998503b1054f9dcfb",
+  measurementId: "G-Z5844EFCH1"
 };
 
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
-const db = getFirestore(app);
+const db = getFirestore(app); 
+const storage = getStorage(app);
 
-export { app, analytics, auth, db };
+
+export { app, analytics, auth, db, storage }; // Export everything
