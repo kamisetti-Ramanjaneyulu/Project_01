@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { auth } from '../Firebase'; // Import the auth object
 
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const location = useLocation();
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -15,7 +17,6 @@ function Navbar() {
     return (
         <div className="bg-white p-4 rounded-full shadow-lg m-2">
             <nav className="flex justify-between items-center px-4 ">
-
                 <div className="hidden md:flex space-x-4">
                     <Link to="/" className="text-black hover:text-gray-700">Home</Link>
                     <Link to="/programs" className="text-black hover:text-gray-700">Programs</Link>
@@ -23,14 +24,18 @@ function Navbar() {
                 </div>
 
                 <Link to="/" className="text-black font-bold">
-                AItgaint
+                    AItgaint
                 </Link>
 
                 <div className="hidden md:flex space-x-4">
                     <Link to="/about-us" className="text-black hover:text-gray-700">About us</Link>
                     <Link to="/contact-us" className="text-black hover:text-gray-700">Contact us</Link>
-                    <Link to="/login" className="text-black hover:text-gray-700">My Account</Link>
-
+                    {/* Conditionally render based on authentication */}
+                    {auth.currentUser ? (
+                        <Link to="/Myaccount" className="text-black hover:text-gray-700">My Account</Link>
+                    ) : (
+                        <Link to="/login" className="text-black hover:text-gray-700">Login</Link>
+                    )}
                 </div>
                 <button
                     onClick={toggleMenu}
@@ -70,8 +75,12 @@ function Navbar() {
                         <Link to="/blog" className="text-black hover:text-gray-700" onClick={closeMenu}>Blog</Link>
                         <Link to="/about-us" className="text-black hover:text-gray-700" onClick={closeMenu}>About Us</Link>
                         <Link to="/contact-us" className="text-black hover:text-gray-700" onClick={closeMenu}>Contact Us</Link>
-                        <Link to="/login" className="text-black hover:text-gray-700" onClick={closeMenu}>My Account</Link>
-
+                        {/* Conditionally render based on authentication */}
+                        {auth.currentUser ? (
+                            <Link to="/Myaccount" className="text-black hover:text-gray-700" onClick={closeMenu}>My Account</Link>
+                        ) : (
+                            <Link to="/login" className="text-black hover:text-gray-700" onClick={closeMenu}>Login</Link>
+                        )}
                     </nav>
                 </div>
             )}
