@@ -1,9 +1,8 @@
-// App.js
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Aboutus from './components/Aboutus';
-import Blog from './components/Blog';
+import BlogPage from './components/BlogPage';
 import Contactus from './components/Contactus';
 import Footer from './components/Footer';
 import Home from './components/Home';
@@ -20,7 +19,7 @@ import CoureseStart from './components/CoureseStart';
 import CoursePage from './components/CoursePage';
 import CourseOverview from './components/CourseOverview';
 import ProfilePage from './components/ProfilePage';
-
+import BlogPost from './components/BlogPost'; // Import BlogPost component
 
 function App() {
   return (
@@ -29,7 +28,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blogs/:id" element={<BlogPost />} /> {/* Assuming BlogPost is used to display single blog posts */}
           <Route path="/blog/ai" element={<BlogAi />} />
           <Route path="/blog/whyai" element={<BlogWhyAi />} />
           <Route path="/blog/applications" element={<BlogAp />} />
@@ -52,4 +52,3 @@ function App() {
 }
 
 export default App;
-
