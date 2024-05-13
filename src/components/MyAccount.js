@@ -5,6 +5,8 @@ import { Link, Navigate } from 'react-router-dom'; // Import the Navigate compon
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
 import { auth } from '../Firebase'; // Import your Firebase auth object
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { color } from 'framer-motion';
 
 const firebaseConfig = {
   apiKey: "AIzaSyA4qjcP40hgzx-gWKqVB6c9h9OKpecZobw",
@@ -22,12 +24,23 @@ const db = getFirestore(app);
 const MyAccount = () => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [user, setUser]=useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, 'courses'));
         const coursesData = [];
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+          if (currentUser) {
+           
+            setUser(currentUser);
+          } else {
+           
+            setUser(null);
+          }
+          return () => unsubscribe();
+        }, []);
         querySnapshot.forEach(doc => {
           coursesData.push({ id: doc.id, ...doc.data() });
         });
@@ -47,13 +60,56 @@ const MyAccount = () => {
 
   // Check if user is logged in
   if (!auth.currentUser) {
+    
     // User is not logged in, redirect to login
     return <Navigate to="/login" />;
   }
+  function name(){
+    const name = user.email;
+    const n = name.split("@");
+    return n[0];
+  }
+  const containerStyle = {
+    padding: '20px', // Adjust as needed
+    backgroundColor: '#f5f5f5', // Light background for better contrast (replace with website's color)
+    color: '#333', // Darker color for better contrast (replace with website's text color)
+    textAlign: 'center',
+    margin: '20px auto', // Adjust margins for spacing
+    maxWidth: '400px',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', // Subtle shadow
+    borderRadius: '4px', // Rounded corners
+  };
+  
+
+  const textStyle = {
+    color: '#333', // Darker color for better contrast
+    fontSize: '1.15em',
+    fontWeight: 'bold',
+    marginBottom: '10px',
+  };
+
+  const signInStyle = {
+    color: '#777', // Slightly lighter color for sign-in message
+    fontStyle: 'italic',
+  };
+  
+
+  
+
 
   return (
+    
     <>
       <MyNav />
+      <div style={containerStyle}>
+      {user ? (
+        <div>
+          <p style={textStyle}>Welcome <b>{name()}</b> </p>
+        </div>
+      ) : (
+        <p style={signInStyle}>Please sign in to view your username.</p>
+      )}
+    </div>
       <div className="p-4 md:p-8 bg-gray-100 min-h-screen">
         <div className="mb-4">
           {/* <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">Welcome back Gaurav Reddy, Continue learning</h1> */}
