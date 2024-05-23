@@ -66,7 +66,7 @@ const MyAccount = () => {
   }
   function name(){
     const name = user.email;
-    const n = name.split("@");
+    const n = name.split("@"); 
     return n[0];
   }
   const containerStyle = {

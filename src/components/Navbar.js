@@ -21,6 +21,8 @@ function Navbar() {
                     <Link to="/" className="text-black hover:text-gray-700">Home</Link>
                     <Link to="/programs" className="text-black hover:text-gray-700">Programs</Link>
                     <Link to="/blog" className="text-black hover:text-gray-700">Blog</Link>
+                    {/* Add the ArticlePage link */}
+                    <Link to="/articles" className="text-black hover:text-gray-700">More</Link>
                 </div>
 
                 <Link to="/" className="text-black font-bold">
@@ -81,6 +83,8 @@ function Navbar() {
                         ) : (
                             <Link to="/login" className="text-black hover:text-gray-700" onClick={closeMenu}>Login</Link>
                         )}
+                        {/* Add the ArticlePage link */}
+                        <Link to="/articles" className="text-black hover:text-gray-700" onClick={closeMenu}>More</Link>
                     </nav>
                 </div>
             )}

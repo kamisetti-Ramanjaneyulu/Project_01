@@ -20,6 +20,8 @@ import CoursePage from './components/CoursePage';
 import CourseOverview from './components/CourseOverview';
 import ProfilePage from './components/ProfilePage';
 import BlogPost from './components/BlogPost'; // Import BlogPost component
+import ArticlesPage from './components/ArticlesPage';
+import ArticleDetail from './components/ArticleDetail';
 
 function App() {
   return (
@@ -44,6 +46,8 @@ function App() {
           <Route path="/Myaccount/Coursepage" element={<CoursePage />} />
           <Route path="/Myaccount/CourseOverview/:id" element={<CourseOverview />} />
           <Route path="/Myaccount/Notes" element={<ProfilePage />} />
+          <Route path="/articles" element={<ArticlesPage />} />
+          <Route path="/articles/:id" element={<ArticleDetail />} />
         </Routes>
         <Footer />
       </div>
